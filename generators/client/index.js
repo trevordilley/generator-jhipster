@@ -104,7 +104,7 @@ module.exports = class extends BaseBlueprintGenerator {
                     this.clientTheme = 'none';
                 }
                 this.clientThemeVariant = configuration.get('clientThemeVariant');
-
+                this.isMui = true // TODO, make this part of actual config process
                 this.enableTranslation = configuration.get('enableTranslation'); // this is enabled by default to avoid conflicts for existing applications
                 this.nativeLanguage = configuration.get('nativeLanguage');
                 this.languages = configuration.get('languages');

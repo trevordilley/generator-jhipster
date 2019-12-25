@@ -16,21 +16,40 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
+<%#
+TODO: MUI
+-%>
 import './footer.<%= styleSheetExt %>';
 
 import React from 'react';
 import { Translate } from 'react-jhipster';
-import { Col, Row } from 'reactstrap'; 
 
-const Footer = props => (
+<%_ if (clientTheme === "mui") { _%>
+import {Grid} from '@material-ui/core'
+<%_ } else { _%>
+import { Col, Row } from 'reactstrap';
+<%_ }  _%>
+
+    const Footer = props => (
   <div className="footer page-content">
-    <Row>
-      <Col md="12">
+    <%_ if (clientTheme === "mui") { _%>
+    <Grid container>
+      <Grid item md={12}>
+    <%_ } else { _%>
+        <Row>
+          <Col md="12">
+    <%_ }  _%>
         <p>
           <Translate contentKey="footer">Your footer</Translate>
         </p>
-      </Col>
-    </Row>
+    <%_ if (clientTheme === "mui") { _%>
+            </Grid>
+          </Grid>
+
+    <%_ } else { _%>
+            </Col>
+        </Row>
+    <%_ }  _%>
   </div>
 );
 

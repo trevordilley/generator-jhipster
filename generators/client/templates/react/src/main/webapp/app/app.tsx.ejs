@@ -21,9 +21,19 @@ import './app.<%= styleSheetExt %>';
 
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+
+<%_ if (clientTheme !== 'mui') { _%>
 import { Card } from 'reactstrap';
-import { BrowserRouter as Router } from 'react-router-dom';
+<%_ } _%>
+<%_ if (clientTheme === 'mui') { _%>
+import { Card } from '@material-ui/core';
+<%_ } _%>
+<%#
+TODO: Use Snackbar for Material UI
+-%>
 import { ToastContainer, toast } from 'react-toastify';
+
+import { BrowserRouter as Router } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 
 import { IRootState } from 'app/shared/reducers';
@@ -68,11 +78,21 @@ export const App = (props: IAppProps) => {
           />
         </ErrorBoundary>
         <div className="container-fluid view-container" id="app-view-container">
+
+          <%_ if (clientTheme === "mui") { _%>
+          <Paper className="jh-card">
+          <%_ } else { _%>
           <Card className="jh-card">
+          <%_ }  _%>
             <ErrorBoundary>
               <AppRoutes/>
             </ErrorBoundary>
-          </Card>
+
+            <%_ if (clientTheme === "mui") { _%>
+              </Paper>
+          <%_ } else { _%>
+            </Card>
+          <%_ }  _%>
           <Footer/>
         </div>
       </div>
